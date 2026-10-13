@@ -38,7 +38,7 @@ const SubjectList = () => {
     cell: ({ getValue }) => <span className="font-medium text-foreground">{getValue<string>()}</span>,
   },
   {
-    id: 'department',
+    id: 'department.name',
     accessorKey: 'department', // already a plain string after toSubject
     size: 200,
     header: () => <span className="font-semibold">Department</span>,
@@ -70,7 +70,6 @@ const SubjectList = () => {
     });
 
   return (
-
     <ListView>
       <Breadcrumb />
 
