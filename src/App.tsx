@@ -22,9 +22,11 @@ import { Toaster } from "./components/refine-ui/notification/toaster";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
 import "./App.css";
 import Dashboard from "./pages/dashboard";
-import { BookOpenIcon, Home } from "lucide-react";
+import { BookOpenIcon, GraduationCap, Home } from "lucide-react";
 import SubjectList from "./pages/subjects/subjectList";
 import Create from "./pages/subjects/create";
+import ClassList from "./pages/classes/list";
+import ClassCreate from "./pages/classes/create";
 
 function App() {
   return (
@@ -53,6 +55,12 @@ function App() {
                   list: "/subjects",
                   create: "/subjects/create",
                   meta: { label: "Subjects", icon: <BookOpenIcon /> }
+                },
+                {
+                  name:'classes',
+                  list: '/classes',
+                  create:'/classes/create',
+                  meta: {label: "Classes", icon: <GraduationCap />}
                 }
               ]}
             >
@@ -65,6 +73,11 @@ function App() {
                   <Route path="/subjects">
                   <Route index element={ <SubjectList /> } /> 
                    <Route path="create" element={ <Create /> } />
+                  </Route>
+
+                   <Route path="/classes">
+                  <Route index element={ <ClassList /> } /> 
+                   <Route path="create" element={ <ClassCreate /> } />
                   </Route>
                 </Route>
               </Routes>
