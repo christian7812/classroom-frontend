@@ -15,9 +15,6 @@ import routerProvider, {
   DocumentTitleHandler,
 } from "@refinedev/react-router";
 import { dataProvider } from "./providers/data";
-import { Login } from "./pages/login";
-import { Register } from "./pages/register";
-import { ForgotPassword } from "./pages/forgot-password";
 import { ErrorComponent } from "./components/refine-ui/layout/error-component";
 import { Layout } from "./components/refine-ui/layout/layout";
 import { Header } from "./components/refine-ui/layout/header";
@@ -25,11 +22,15 @@ import { useNotificationProvider } from "./components/refine-ui/notification/use
 import { Toaster } from "./components/refine-ui/notification/toaster";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
 import "./App.css";
+import { BookOpen, Home } from "lucide-react";
+import Dashboard from "./pages/dashboard";
+import SubjectList from "./pages/subjects/subjectList";
+import Create from "./pages/subjects/create";
+
 
 function App() {
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
         <ThemeProvider>
           <DevtoolsProvider>
@@ -42,10 +43,34 @@ function App() {
                 warnWhenUnsavedChanges: true,
                 projectId: "ktWVpO-18TJEG-Mp6OCL",
               }}
+
+              resources={[
+                {
+                  name: 'dashboard',
+                  list: '/',
+                  meta: {label: 'Home', icon: <Home />}
+                },{
+                  name: 'subjects',
+                  list: '/subjects',
+                  create: '/subjects/create',
+                  meta: {label: 'Subjects', icon: <BookOpen />}
+                }
+              ]}
             >
               <Routes>
-                <Route index element={<WelcomePage />} />
+               <Route element={<Layout>
+                <Outlet />
+               </Layout>}> 
+               
+                <Route path="/" element={<Dashboard />} />
+
+                <Route path="subjects">
+                 <Route index element={<SubjectList />} />
+                 <Route path="create" element={<Create />} />
+                </Route>
+               </Route>
               </Routes>
+              
               <Toaster />
               <RefineKbar />
               <UnsavedChangesNotifier />
