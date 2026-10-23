@@ -64,7 +64,7 @@ const SubjectList = () => {
           size: 180,
           header: () => (
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Subject
+              Name
             </span>
           ),
           cell: ({ getValue }) => (
@@ -76,7 +76,7 @@ const SubjectList = () => {
         },
         {
           id: "department",
-          accessorKey: "department",
+          accessorKey: "department.name",
           size: 150,
           header: () => (
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
